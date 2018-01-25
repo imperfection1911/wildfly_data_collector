@@ -1,0 +1,14 @@
+/esb/wildfly-8.2.0/bin/jboss-cli.sh --user=admin --password=Passw0rd! --connect --commands="ls /deployment"
+
+//получить датасурсы
+curl --digest http://192.168.102.53:9990/management --header "Content-Type: application/json" -d '{"operation":"read-resource","recursive":"true", "address":["subsystem","datasources"], "json.pretty":1}' -u admin:Passw0rd!
+/esb/wildfly-8.2.0/bin/jboss-cli.sh --user=admin --password=Passw0rd! --connect --commands="/subsystem=datasources:read-resource(recursive=true)"
+
+//Получить статус приложения
+curl --digest http://192.168.102.53:9990/management --header "Content-Type: application/json" -d '{"operation":"read-resource","address":["deployment","annotations-1602.1.0.war"],"json.pretty":1}' -u admin:Passw0rd!
+
+curl --digest http://192.168.102.53:9990/management --header "Content-Type: application/json" -d '{"operation":"ls","address":["deployment"],"json.pretty":1}' -u admin:Passw0rd!
+
+//jms очереди
+curl --digest http://192.168.102.53:9990/management --header "Content-Type: application/json" -d '{"operation":"read-resource","recursive":"true", "address":["subsystem","messaging","hornetq-server","default","jms-queue"], "json.pretty":1}' -u admin:Passw0rd!
+
